@@ -9,28 +9,28 @@ const router = useRouter()
 
 const { listenerRouteChange } = useRouteListener()
 
-/** 定义响应式数据 breadcrumbs，用于存储面包屑导航信息 */
+/** 반응 형 데이터 정의 빵 부스러기를 빵 부스러기 내비게이션 정보를 저장합니다 */
 const breadcrumbs = ref<RouteLocationMatched[]>([])
 
-/** 获取面包屑导航信息 */
+/** Breadcrumb Navigation 정보 받기 */
 function getBreadcrumb() {
   breadcrumbs.value = route.matched.filter(item => item.meta?.title && item.meta?.breadcrumb !== false)
 }
 
-/** 编译路由路径 */
+/** 라우팅 경로 컴파일 */
 function pathCompile(path: string) {
   const toPath = compile(path)
   return toPath(route.params)
 }
 
-/** 处理面包屑导航点击事件 */
+/** 빵 부스러기 내비게이션 클릭 클릭 이벤트 */
 function handleLink(item: RouteLocationMatched) {
   const { redirect, path } = item
   if (redirect) return router.push(redirect as string)
   router.push(pathCompile(path))
 }
 
-// 监听路由变化，更新面包屑导航信息
+// 라우팅 변경을 듣고 빵 부스러기 탐색 정보를 업데이트합니다.
 listenerRouteChange((route) => {
   if (route.path.startsWith("/redirect/")) return
   getBreadcrumb()

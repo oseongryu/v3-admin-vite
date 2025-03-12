@@ -2,7 +2,7 @@
   <div class="app-container">
     <h4>
       <span>
-        三级及其以上路由缓存功能默认关闭，需要请前往此配置文件中打开：
+        레벨 3 이상의 라우팅 캐시 기능이 기본적으로 꺼져 있습니다.
       </span>
       <el-link
         type="primary"

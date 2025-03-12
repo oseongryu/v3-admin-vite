@@ -12,33 +12,33 @@ interface DataItem {
   list: NotifyItem[]
 }
 
-/** 角标当前值 */
+/** 각도 마크의 현재 값 */
 const badgeValue = computed(() => data.value.reduce((sum, item) => sum + item.list.length, 0))
 
-/** 角标最大值 */
+/** 최대 각도 마커 */
 const badgeMax = 99
 
-/** 面板宽度 */
+/** 패널 너비 */
 const popoverWidth = 350
 
 /** 当前 Tab */
 const activeName = ref<TabName>("通知")
 
-/** 所有数据 */
+/** 모든 데이터 */
 const data = ref<DataItem[]>([
-  // 通知数据
+  // 알림 데이터
   {
     name: "通知",
     type: "primary",
     list: notifyData
   },
-  // 消息数据
+  // 메시지 데이터
   {
     name: "消息",
     type: "danger",
     list: messageData
   },
-  // 待办数据
+  // 할 일 데이터
   {
     name: "待办",
     type: "warning",

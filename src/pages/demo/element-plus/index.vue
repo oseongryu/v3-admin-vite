@@ -7,7 +7,7 @@ import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@el
 import { cloneDeep } from "lodash-es"
 
 defineOptions({
-  // 命名当前组件
+  // 현재 구성 요소의 이름을 지정하십시오
   name: "ElementPlus"
 })
 
@@ -104,7 +104,7 @@ function resetSearch() {
 }
 // #endregion
 
-// 监听分页参数的变化
+// 페이징 매개 변수의 변경 사항을 듣습니다
 watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
 </script>
 
@@ -126,10 +126,10 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :icon="Search" @click="handleSearch">
-            查询
+            질문
           </el-button>
           <el-button :icon="Refresh" @click="resetSearch">
-            重置
+            다시 놓기
           </el-button>
         </el-form-item>
       </el-form>
@@ -138,10 +138,10 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
       <div class="toolbar-wrapper">
         <div>
           <el-button type="primary" :icon="CirclePlus" @click="dialogVisible = true">
-            新增用户
+            새로운 사용자
           </el-button>
           <el-button type="danger" :icon="Delete">
-            批量删除
+            배치 삭제
           </el-button>
         </div>
         <div>
@@ -172,10 +172,10 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-table-column prop="status" label="状态" align="center">
             <template #default="scope">
               <el-tag v-if="scope.row.status" type="success" effect="plain" disable-transitions>
-                启用
+                할 수 있게 하다
               </el-tag>
               <el-tag v-else type="danger" effect="plain" disable-transitions>
-                禁用
+                장애가 있는
               </el-tag>
             </template>
           </el-table-column>
@@ -183,10 +183,10 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-table-column fixed="right" label="操作" width="150" align="center">
             <template #default="scope">
               <el-button type="primary" text bg size="small" @click="handleUpdate(scope.row)">
-                修改
+                개정하다
               </el-button>
               <el-button type="danger" text bg size="small" @click="handleDelete(scope.row)">
-                删除
+                삭제
               </el-button>
             </template>
           </el-table-column>
@@ -205,7 +205,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
         />
       </div>
     </el-card>
-    <!-- 新增/修改 -->
+    <!-- 추가/수정 -->
     <el-dialog
       v-model="dialogVisible"
       :title="formData.id === undefined ? '新增用户' : '修改用户'"
@@ -222,10 +222,10 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
       </el-form>
       <template #footer>
         <el-button @click="dialogVisible = false">
-          取消
+          취소
         </el-button>
         <el-button type="primary" :loading="loading" @click="handleCreateOrUpdate">
-          确认
+          확인하다
         </el-button>
       </template>
     </el-dialog>

@@ -7,7 +7,7 @@ import { RoleColumnSlots } from "./tsx/RoleColumnSlots"
 import { StatusColumnSlots } from "./tsx/StatusColumnSlots"
 
 defineOptions({
-  // 命名当前组件
+  // 현재 구성 요소의 이름을 지정하십시오
   name: "VxeTable"
 })
 
@@ -27,11 +27,11 @@ const xGridDom = ref<VxeGridInstance>()
 const xGridOpt: VxeGridProps = reactive({
   loading: true,
   autoResize: true,
-  /** 分页配置项 */
+  /** Pagination 구성 항목 */
   pagerConfig: {
     align: "right"
   },
-  /** 表单配置项 */
+  /** 구성 항목 양식 */
   formConfig: {
     items: [
       {
@@ -76,7 +76,7 @@ const xGridOpt: VxeGridProps = reactive({
       }
     ]
   },
-  /** 工具栏配置 */
+  /** 도구 모음 구성 */
   toolbarConfig: {
     refresh: true,
     custom: true,
@@ -84,12 +84,12 @@ const xGridOpt: VxeGridProps = reactive({
       buttons: "toolbar-btns"
     }
   },
-  /** 自定义列配置项 */
+  /** 사용자 정의 열 구성 항목 */
   customConfig: {
-    /** 是否允许列选中  */
+    /** 열 선택 허용 여부 */
     checkMethod: ({ column }) => !["username"].includes(column.field)
   },
-  /** 列配置 */
+  /** 열 구성 */
   columns: [
     {
       type: "checkbox",
@@ -102,7 +102,7 @@ const xGridOpt: VxeGridProps = reactive({
     {
       field: "roles",
       title: "角色",
-      /** 自定义列与 type: "html" 的列一起使用，会产生错误，所以采用 TSX 实现 */
+      /** 유형이있는 열과 함께 사용 : "html"은 오류가 발생하므로 TSX를 사용하여 구현 */
       slots: RoleColumnSlots
     },
     {
@@ -134,11 +134,11 @@ const xGridOpt: VxeGridProps = reactive({
   ],
   /** 数据代理配置项（基于 Promise API） */
   proxyConfig: {
-    /** 启用动态序号代理 */
+    /** 동적 일련 번호 프록시 활성화 */
     seq: true,
-    /** 是否代理表单 */
+    /** 프록시 양식 */
     form: true,
-    /** 是否自动加载，默认为 true */
+    /** 자동로드 되든 기본값이 사실입니다 */
     autoLoad: true,
     props: {
       total: "total"
@@ -150,26 +150,26 @@ const xGridOpt: VxeGridProps = reactive({
         return new Promise((resolve) => {
           let total = 0
           let result: RowMeta[] = []
-          // 加载数据
+          // 데이터로드
           const callback = (res: TableResponseData) => {
             if (res?.data) {
-              // 总数
+              // 총 번호
               total = res.data.total
-              // 列表数据
+              // 나열 데이터
               result = res.data.list
             }
             xGridOpt.loading = false
-            // 返回值有格式要求，详情见 vxe-table 官方文档
+            // 반환 값에는 형식 요구 사항이 있습니다. 자세한 내용은 공식 VXE-Table 문서를 참조하십시오.
             resolve({ total, result })
           }
-          // 接口需要的参数
+          // 인터페이스에 필요한 매개 변수
           const params = {
             username: form.username || "",
             phone: form.phone || "",
             size: page.pageSize,
             currentPage: page.currentPage
           }
-          // 调用接口
+          // 인터페이스를 호출합니다
           getTableDataApi(params).then(callback).catch(callback)
         })
       }
@@ -198,14 +198,14 @@ const xFormOpt: VxeFormProps = reactive({
   span: 24,
   titleWidth: "100px",
   loading: false,
-  /** 是否显示标题冒号 */
+  /** 제목 콜론 표시 여부 */
   titleColon: false,
-  /** 表单数据 */
+  /** 양식 데이터 */
   data: {
     username: "",
     password: ""
   },
-  /** 项列表 */
+  /** 항목 목록 */
   items: [
     {
       field: "username",
@@ -254,7 +254,7 @@ const xFormOpt: VxeFormProps = reactive({
       }
     }
   ],
-  /** 校验规则 */
+  /** 검증 규칙 */
   rules: {
     username: [
       {
@@ -290,22 +290,22 @@ const xFormOpt: VxeFormProps = reactive({
 const crudStore = reactive({
   /** 表单类型，true 表示修改，false 表示新增 */
   isUpdate: true,
-  /** 加载表格数据 */
+  /**로드 테이블 데이터 */
   commitQuery: () => xGridDom.value?.commitProxy("query"),
-  /** 清空表格数据 */
+  /** 명확한 테이블 데이터 */
   clearTable: () => xGridDom.value?.reloadData([]),
-  /** 点击显示弹窗 */
+  /** 팝업 창을 표시하려면 클릭하십시오 */
   onShowModal: (row?: RowMeta) => {
     if (row) {
       crudStore.isUpdate = true
       xModalOpt.title = "修改用户"
-      // 赋值
+      // 과제
       xFormOpt.data.username = row.username
     } else {
       crudStore.isUpdate = false
       xModalOpt.title = "新增用户"
     }
-    // 禁用表单项
+    // 양식 항목을 비활성화합니다
     const props = xFormOpt.items?.[0]?.itemRender?.props
     props && (props.disabled = crudStore.isUpdate)
     xModalDom.value?.open()
@@ -314,7 +314,7 @@ const crudStore = reactive({
       xFormDom.value?.clearValidate()
     })
   },
-  /** 确定并保存 */
+  /** OK 및 저장 */
   onSubmitForm: () => {
     if (xFormOpt.loading) return
     xFormDom.value?.validate((errMap) => {
@@ -328,15 +328,15 @@ const crudStore = reactive({
         crudStore.commitQuery()
       }
       if (crudStore.isUpdate) {
-        // 模拟调用修改接口成功
+        // 시뮬레이션 호출은 인터페이스 수정에 성공했습니다.
         setTimeout(() => callback(), 1000)
       } else {
-        // 模拟调用新增接口成功
+        // 새 인터페이스의 시뮬레이션 호출이 성공했습니다.
         setTimeout(() => callback(), 1000)
       }
     })
   },
-  /** 新增后是否跳入最后一页 */
+  /** 추가 후 마지막 페이지로 이동하면 */
   afterInsert: () => {
     const pager = xGridDom.value?.getProxyInfo()?.pager
     if (pager) {
@@ -346,7 +346,7 @@ const crudStore = reactive({
       }
     }
   },
-  /** 删除 */
+  /** 삭제  */
   onDelete: (row: RowMeta) => {
     const tip = `确定 <strong style="color: var(--el-color-danger);"> 删除 </strong> 用户 <strong style="color: var(--el-color-primary);"> ${row.username} </strong> ？`
     const config: ElMessageBoxOptions = {
@@ -366,7 +366,7 @@ const crudStore = reactive({
       })
     })
   },
-  /** 删除后是否返回上一页 */
+  /** 삭제 후 이전 페이지로 돌아갑니다 */
   afterDelete: () => {
     const tableData: RowMeta[] = xGridDom.value!.getData()
     const pager = xGridDom.value?.getProxyInfo()?.pager
@@ -374,7 +374,7 @@ const crudStore = reactive({
       --pager.currentPage
     }
   },
-  /** 更多自定义方法 */
+  /** 더 많은 사용자 정의 방법 */
   moreFn: () => {}
 })
 // #endregion
@@ -388,30 +388,30 @@ const crudStore = reactive({
       description="由 Apifox 提供在线 Mock，数据不具备真实性，仅供简单的 CRUD 操作演示。"
       show-icon
     />
-    <!-- 表格 -->
+    <!-- 테이블 -->
     <vxe-grid ref="xGridDom" v-bind="xGridOpt">
-      <!-- 左侧按钮列表 -->
+      <!-- 왼쪽의 버튼 목록 -->
       <template #toolbar-btns>
         <vxe-button status="primary" icon="vxe-icon-add" @click="crudStore.onShowModal()">
-          新增用户
+          새로운 사용자
         </vxe-button>
         <vxe-button status="danger" icon="vxe-icon-delete">
-          批量删除
+          배치 삭제
         </vxe-button>
       </template>
-      <!-- 操作 -->
+      <!--작동 -->
       <template #row-operate="{ row }">
         <el-button link type="primary" @click="crudStore.onShowModal(row)">
-          修改
+          개정하다
         </el-button>
         <el-button link type="danger" @click="crudStore.onDelete(row)">
-          删除
+          삭제
         </el-button>
       </template>
     </vxe-grid>
-    <!-- 弹窗 -->
+    <!-- 팝업 창 -->
     <vxe-modal ref="xModalDom" v-bind="xModalOpt">
-      <!-- 表单 -->
+      <!-- 양식 -->
       <vxe-form ref="xFormDom" v-bind="xFormOpt" />
     </vxe-modal>
   </div>

@@ -21,7 +21,7 @@ const options = {
 }
 
 async function querySuccess() {
-  // 注意：
+  // 알아채다:
   // 1. getSuccessApi 是一个函数而非函数调用
   // 2. 如需给 getSuccessApi 函数传递参数，请在后面的括号中进行（真正的 getSuccessApi 调用）
   const res = await useFullscreenLoading(getSuccessApi)([1, 2, 3])
@@ -44,10 +44,10 @@ async function queryError() {
     </el-card>
     <el-card header="示例" shadow="never">
       <el-button type="primary" @click="querySuccess">
-        查询成功
+        쿼리 성공
       </el-button>
       <el-button type="danger" @click="queryError">
-        查询失败
+        쿼리가 실패했습니다
       </el-button>
     </el-card>
   </div>

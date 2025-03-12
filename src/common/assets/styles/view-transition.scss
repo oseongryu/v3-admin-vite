@@ -1,4 +1,4 @@
-// 控制切换主题时的动画效果（只在较新的浏览器上生效，例如 Chrome 111+）
+// 테마를 전환 할 때 애니메이션 제어 (Chrome 111+와 같은 최신 브라우저에서만 효과적입니다)
 
 ::view-transition-old(root) {
   animation: none;

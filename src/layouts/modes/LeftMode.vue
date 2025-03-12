@@ -11,7 +11,7 @@ const appStore = useAppStore()
 const settingsStore = useSettingsStore()
 const { showTagsView, fixedHeader } = storeToRefs(settingsStore)
 
-/** 定义计算属性 layoutClasses，用于控制布局的类名 */
+/** 계산 된 속성 정의 레이아웃 클래스, 레이아웃을 제어하는 ​​데 사용되는 클래스 이름 */
 const layoutClasses = computed(() => {
   return {
     hideSidebar: !appStore.sidebar.opened,
@@ -22,7 +22,7 @@ const layoutClasses = computed(() => {
   }
 })
 
-/** 用于处理点击 mobile 端侧边栏遮罩层的事件 */
+/** 모바일 엔드의 사이드 바 마스크 레이어를 클릭하는 이벤트를 처리하는 데 사용됩니다 */
 function handleClickOutside() {
   appStore.closeSidebar(false)
 }
@@ -32,16 +32,16 @@ function handleClickOutside() {
   <div :class="layoutClasses" class="app-wrapper">
     <!-- mobile 端侧边栏遮罩层 -->
     <div v-if="layoutClasses.mobile && layoutClasses.openSidebar" class="drawer-bg" @click="handleClickOutside" />
-    <!-- 左侧边栏 -->
+    <!-- 왼쪽 사이드 바 -->
     <Sidebar class="sidebar-container" />
-    <!-- 主容器 -->
+    <!-- 메인 컨테이너 -->
     <div :class="{ hasTagsView: showTagsView }" class="main-container">
-      <!-- 头部导航栏和标签栏 -->
+      <!-- 헤드 네비게이션 바 및 탭 바 -->
       <div :class="{ 'fixed-header': fixedHeader }" class="layout-header">
         <NavigationBar />
         <TagsView v-show="showTagsView" />
       </div>
-      <!-- 页面主体内容 -->
+      <!-- 페이지 신체 내용 -->
       <AppMain class="app-main" />
     </div>
   </div>
@@ -160,7 +160,7 @@ $transition-time: 0.35s;
       transform: translate3d(calc(0px - var(--v3-sidebar-width)), 0, 0);
     }
   }
-  // 既是 mobile 又是顶部或混合布局模式
+  // 모바일 및 상단 또는 하이브리드 레이아웃 모드 모두
   &.noLeft {
     .sidebar-container {
       background-color: var(--el-bg-color);

@@ -1,4 +1,4 @@
-/* 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
+/* CSS 및 SCS에서 사용할 수있을뿐만 아니라 JS로도 가져올 수있는 글로벌 CSS 변수. */
 
 :root {
   /* Body */
@@ -15,7 +15,7 @@
   /* NavigationBar 组件 */
   --v3-navigationbar-height: 50px;
   --v3-navigationbar-text-color: var(--el-text-color-regular);
-  /* Sidebar 组件（左侧模式全部生效、顶部模式全部不生效、混合模式非颜色部分生效） */
+  /* 사이드 바 구성 요소 (모든 왼쪽 모드는 유효하고 모든 최상위 모드가 유효하지 않으며 혼합 모드의 색상이 아닌 부분이 적용됩니다)  */
   --v3-sidebar-width: 220px;
   --v3-sidebar-hide-width: 58px;
   --v3-sidebar-border-right: 1px solid var(--el-fill-color);
@@ -47,7 +47,7 @@
   --v3-rightpanel-button-bg-color: #001428;
 }
 
-/* 内容区放大时，将不需要的组件隐藏 */
+/* 컨텐츠 영역이 확대되면 원치 않는 구성 요소가 숨겨져 있습니다  */
 body.content-large {
   /* Header 区域 = TagsView 组件 */
   --v3-header-height: var(--v3-tagsview-height);
@@ -58,7 +58,7 @@ body.content-large {
   --v3-sidebar-hide-width: 0px;
 }
 
-/* 内容区全屏时，将不需要的组件隐藏 */
+/* 콘텐츠 영역이 전체 화면 인 경우 원치 않는 구성 요소가 숨겨져 있습니다  */
 body.content-full {
   /* Header 区域 */
   --v3-header-height: 0px;

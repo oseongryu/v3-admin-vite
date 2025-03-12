@@ -18,10 +18,10 @@ const settingsStore = useSettingsStore()
           </keep-alive>
         </transition>
       </router-view>
-      <!-- 页脚 -->
+      <!-- 바닥 글 -->
       <Footer v-if="settingsStore.showFooter" />
     </div>
-    <!-- 返回顶部 -->
+    <!-- 위로 다시 -->
     <el-backtop />
     <!-- 返回顶部（固定 Header 情况下） -->
     <el-backtop target=".app-scrollbar" />

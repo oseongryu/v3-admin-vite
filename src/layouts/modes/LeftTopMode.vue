@@ -17,7 +17,7 @@ const layoutClasses = computed(() => {
 
 <template>
   <div :class="layoutClasses" class="app-wrapper">
-    <!-- 头部导航栏和标签栏 -->
+    <!-- 헤드 네비게이션 바 및 탭 바 -->
     <div class="fixed-header layout-header">
       <Logo v-if="showLogo" :collapse="false" class="logo" />
       <div class="content">
@@ -25,11 +25,11 @@ const layoutClasses = computed(() => {
         <TagsView v-show="showTagsView" />
       </div>
     </div>
-    <!-- 主容器 -->
+    <!-- 메인 컨테이너 -->
     <div :class="{ hasTagsView: showTagsView }" class="main-container">
-      <!-- 左侧边栏 -->
+      <!-- 왼쪽 사이드 바 -->
       <Sidebar class="sidebar-container" />
-      <!-- 页面主体内容 -->
+      <!-- 페이지 신체 내용 -->
       <AppMain class="app-main" />
     </div>
   </div>

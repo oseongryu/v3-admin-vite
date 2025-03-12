@@ -1,7 +1,7 @@
 // 自定义 Vxe Table 样式
 
 .vxe-grid {
-  // 表单
+  // 형태
   &--form-wrapper {
     .vxe-form {
       padding: 10px 20px;
@@ -9,14 +9,14 @@
     }
   }
 
-  // 工具栏
+  // 툴바
   &--toolbar-wrapper {
     .vxe-toolbar {
       padding: 20px;
     }
   }
 
-  // 分页
+  // Pagination
   &--pager-wrapper {
     .vxe-pager {
       height: 70px;

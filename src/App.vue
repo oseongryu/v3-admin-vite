@@ -8,11 +8,11 @@ const { initTheme } = useTheme()
 const { initGreyAndColorWeakness } = useGreyAndColorWeakness()
 const { initStarNotification, initStoreNotification } = usePany()
 
-// 初始化主题
+// 주제를 초기화합니다
 initTheme()
-// 初始化灰色模式和色弱模式
+// 회색 모드 및 색상 약점을 초기화합니다
 initGreyAndColorWeakness()
-// 初始化通知
+// 초기화 알림
 initStarNotification()
 initStoreNotification()
 </script>

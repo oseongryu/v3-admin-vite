@@ -2,13 +2,13 @@
 import screenfull from "screenfull"
 
 interface Props {
-  /** 全屏的元素，默认是 html */
+  /** 전체 화면 요소, 기본값은 html */
   element?: string
-  /** 打开全屏提示语 */
+  /** 전체 화면 프롬프트 열기 */
   openTips?: string
-  /** 关闭全屏提示语 */
+  /** 전체 화면 프롬프트 닫기 */
   exitTips?: string
-  /** 是否只针对内容区 */
+  /** 컨텐츠 영역에만 해당됩니다 */
   content?: boolean
 }
 
@@ -38,15 +38,15 @@ function handleFullscreenClick() {
 
 function handleFullscreenChange() {
   isFullscreen.value = screenfull.isFullscreen
-  // 退出全屏时清除相关的 class
+  // 전체 화면을 종료 할 때 관련 클래스를 지우십시오
   isFullscreen.value || classList.remove(CONTENT_LARGE, CONTENT_FULL)
 }
 
 watchEffect((onCleanup) => {
   if (isEnabled) {
-    // 挂载组件时自动执行
+    // 구성 요소를 장착 할 때 자동으로 실행됩니다
     screenfull.on("change", handleFullscreenChange)
-    // 卸载组件时自动执行
+    // 구성 요소를 제거 할 때 자동으로 실행됩니다
     onCleanup(() => {
       screenfull.off("change", handleFullscreenChange)
     })
@@ -61,16 +61,16 @@ const contentLargeSvgName = computed(() => (isContentLarge.value ? "fullscreen-e
 
 function handleContentLargeClick() {
   isContentLarge.value = !isContentLarge.value
-  // 内容区放大时，将不需要的组件隐藏
+  // 컨텐츠 영역이 확대되면 원치 않는 구성 요소가 숨겨져 있습니다.
   classList.toggle(CONTENT_LARGE, isContentLarge.value)
 }
 
 function handleContentFullClick() {
-  // 取消内容区放大
+  // 컨텐츠 영역 확대를 취소합니다
   isContentLarge.value && handleContentLargeClick()
-  // 内容区全屏时，将不需要的组件隐藏
+  // 컨텐츠 영역이 전체 화면 인 경우 원치 않는 구성 요소가 숨겨져 있습니다.
   classList.add(CONTENT_FULL)
-  // 开启全屏
+  // 전체 화면을 켭니다
   handleFullscreenClick()
 }
 // #endregion
@@ -78,11 +78,11 @@ function handleContentFullClick() {
 
 <template>
   <div>
-    <!-- 全屏 -->
+    <!-- 전체 화면 -->
     <el-tooltip v-if="!props.content" effect="dark" :content="fullscreenTips" placement="bottom">
       <SvgIcon :name="fullscreenSvgName" @click="handleFullscreenClick" class="svg-icon" />
     </el-tooltip>
-    <!-- 内容区 -->
+    <!-- 콘텐츠 영역 -->
     <el-dropdown v-else :disabled="isFullscreen">
       <SvgIcon :name="contentLargeSvgName" class="svg-icon" />
       <template #dropdown>
@@ -91,9 +91,9 @@ function handleContentFullClick() {
           <el-dropdown-item @click="handleContentLargeClick">
             {{ contentLargeTips }}
           </el-dropdown-item>
-          <!-- 内容区全屏 -->
+          <!--컨텐츠 영역의 전체 화면 -->
           <el-dropdown-item @click="handleContentFullClick">
-            内容区全屏
+            컨텐츠 영역 전체 화면
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>

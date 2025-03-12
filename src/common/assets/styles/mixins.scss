@@ -1,4 +1,4 @@
-// 清除浮动
+// 플로트를 클리어합니다
 %clearfix {
   &::after {
     content: "";
@@ -7,14 +7,14 @@
   }
 }
 
-// 美化原生滚动条
+// 네이티브 스크롤 바를 아름답게합니다
 %scrollbar {
-  // 整个滚动条
+  // 전체 스크롤 바
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
-  // 滚动条上的滚动滑块
+  // 스크롤 막대에서 슬라이더 스크롤
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: #90939955;
@@ -25,18 +25,18 @@
   &::-webkit-scrollbar-thumb:active {
     background-color: #90939999;
   }
-  // 当同时有垂直滚动条和水平滚动条时交汇的部分
+  // 수직 스크롤 막대와 수평 스크롤 막대의 교차점이 동시에 있습니다.
   &::-webkit-scrollbar-corner {
     background-color: transparent;
   }
 }
 
-// 文本溢出时显示省略号
+// 텍스트가 넘치면 엘리시 시스를 표시합니다
 %ellipsis {
-  // 隐藏溢出的文本
+  // 오버플레이션 텍스트를 숨 깁니다
   overflow: hidden;
-  // 防止文本换行
+  // 텍스트 포장을 방지합니다
   white-space: nowrap;
-  // 文本内容溢出容器时，文本末尾显示省略号
+  // 텍스트 콘텐츠가 컨테이너에서 오버플로 흐르면 텍스트 끝에 타원이 표시됩니다.
   text-overflow: ellipsis;
 }

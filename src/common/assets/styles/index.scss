@@ -1,4 +1,4 @@
-// 全局 CSS 变量
+// 글로벌 CSS 변수
 @import "./variables.css";
 // Transition
 @import "./transition.scss";
@@ -8,7 +8,7 @@
 // Vxe Table
 @import "./vxe-table.css";
 @import "./vxe-table.scss";
-// 注册多主题
+// 여러 주제에 가입합니다
 @import "./theme/register.scss";
 // Mixins
 @import "./mixins.scss";
@@ -22,11 +22,11 @@
 
 html {
   height: 100%;
-  // 灰色模式
+  // 회색 모드
   &.grey-mode {
     filter: grayscale(1);
   }
-  // 色弱模式
+  // 약한 색상 모드
   &.color-weakness {
     filter: invert(0.8);
   }

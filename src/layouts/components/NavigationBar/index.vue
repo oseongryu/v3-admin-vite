@@ -19,12 +19,12 @@ const userStore = useUserStore()
 const settingsStore = useSettingsStore()
 const { showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore)
 
-/** 切换侧边栏 */
+/** 스위치 사이드 바 */
 function toggleSidebar() {
   appStore.toggleSidebar(false)
 }
 
-/** 登出 */
+/** 로그 아웃 */
 function logout() {
   userStore.logout()
   router.push("/login")
@@ -60,7 +60,7 @@ function logout() {
               <el-dropdown-item>Gitee</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
-              退出登录
+              로그 아웃하십시오
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>

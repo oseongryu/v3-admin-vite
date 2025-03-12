@@ -8,14 +8,14 @@ interface Props {
 
 const props = defineProps<Props>()
 
-/** 选中的菜单 */
+/** 선택된 메뉴 */
 const modelValue = defineModel<RouteRecordNameGeneric | undefined>({ required: true })
 
 const instance = getCurrentInstance()
 
 const scrollbarHeight = ref<number>(0)
 
-/** 菜单的样式 */
+/** 메뉴 스타일 */
 function itemStyle(item: RouteRecordRaw) {
   const flag = item.name === modelValue.value
   return {
@@ -24,20 +24,20 @@ function itemStyle(item: RouteRecordRaw) {
   }
 }
 
-/** 鼠标移入 */
+/** 이사 오다  */
 function handleMouseenter(item: RouteRecordRaw) {
-  // 如果上键或下键与 mouseenter 事件同时生效，则以上下键为准，不执行该函数的赋值逻辑
+  // 상단 또는 하단 키 및 마우스 센터 이벤트가 동시에 적용되면 상단 및 하단 키가 우선하고 함수의 할당 논리가 실행되지 않아야합니다.
   if (props.isPressUpOrDown) return
   modelValue.value = item.name
 }
 
-/** 计算滚动可视区高度 */
+/** 두루마리보기 영역 높이 */
 function getScrollbarHeight() {
   // el-scrollbar max-height="40vh"
   scrollbarHeight.value = Number((window.innerHeight * 0.4).toFixed(1))
 }
 
-/** 根据下标计算到顶部的距离 */
+/** 첨자에 따라 상단까지의 거리를 계산하십시오 */
 function getScrollTop(index: number) {
   const currentInstance = instance?.proxy?.$refs[`resultItemRef${index}`] as HTMLDivElement[]
   if (!currentInstance) return 0
@@ -47,7 +47,7 @@ function getScrollTop(index: number) {
   return scrollTop > scrollbarHeight.value ? scrollTop - scrollbarHeight.value : 0
 }
 
-// 在组件挂载前添加窗口大小变化事件监听器
+// 구성 요소 마운트 전에 창 크기 변경 이벤트 리스너 추가
 onBeforeMount(() => {
   window.addEventListener("resize", getScrollbarHeight)
 })
@@ -57,7 +57,7 @@ onMounted(() => {
   getScrollbarHeight()
 })
 
-// 在组件卸载前移除窗口大小变化事件监听器
+// 구성 요소 제거 전에 창 크기 변경 이벤트 리스너 제거 제거
 onBeforeUnmount(() => {
   window.removeEventListener("resize", getScrollbarHeight)
 })
@@ -66,7 +66,7 @@ defineExpose({ getScrollTop })
 </script>
 
 <template>
-  <!-- 外层 div 不能删除，是用来接收父组件 click 事件的 -->
+  <!-- 외부 div를 삭제할 수 없으며 부모 구성 요소 클릭 이벤트를받는 데 사용됩니다. -->
   <div>
     <div
       v-for="(item, index) in props.data"

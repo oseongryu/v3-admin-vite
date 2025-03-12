@@ -1,10 +1,10 @@
 /**
  * @description dark-blue 主题模式下的 Element Plus CSS 变量
  * @description 在此查阅所有可自定义的变量：https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
- * @description 也可以打开浏览器控制台选择元素，查看要覆盖的变量名
+ * @description 브라우저 콘솔을 열어서 덮을 변수 이름을 볼 수 있도록 요소를 선택할 수도 있습니다.
  */
 
-/* 基础颜色 */
+/* 기본 색상  */
 html.dark-blue {
   /* color-primary */
   --el-color-primary: #00bb99;

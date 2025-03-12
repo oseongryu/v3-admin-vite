@@ -10,7 +10,7 @@ import LeftMode from "./modes/LeftMode.vue"
 import LeftTopMode from "./modes/LeftTopMode.vue"
 import TopMode from "./modes/TopMode.vue"
 
-// Layout 布局响应式
+// 레이아웃 레이아웃 응답
 useResize()
 
 const { setWatermark, clearWatermark } = useWatermark()
@@ -27,7 +27,7 @@ watchEffect(() => {
 })
 // #endregion
 
-// 开启或关闭系统水印
+// 시스템 워터 마크를 켜거나 끕니다
 watchEffect(() => {
   showWatermark.value ? setWatermark(import.meta.env.VITE_APP_TITLE) : clearWatermark()
 })
@@ -35,13 +35,13 @@ watchEffect(() => {
 
 <template>
   <div>
-    <!-- 左侧模式 -->
+    <!-- 왼쪽 모드 -->
     <LeftMode v-if="isLeft || isMobile" />
-    <!-- 顶部模式 -->
+    <!-- 상단 모드 -->
     <TopMode v-else-if="isTop" />
-    <!-- 混合模式 -->
+    <!-- 혼합 모드 -->
     <LeftTopMode v-else-if="isLeftTop" />
-    <!-- 右侧设置面板 -->
+    <!-- 오른쪽의 설정 패널 -->
     <RightPanel v-if="showSettings">
       <Settings />
     </RightPanel>

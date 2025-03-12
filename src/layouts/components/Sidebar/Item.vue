@@ -13,16 +13,16 @@ const props = withDefaults(defineProps<Props>(), {
   basePath: ""
 })
 
-/** 是否始终显示根菜单 */
+/** 루트 메뉴가 항상 표시되는지 */
 const alwaysShowRootMenu = computed(() => props.item.meta?.alwaysShow)
 
-/** 显示的子菜单 */
+/** 표시된 하위 메뉴 */
 const showingChildren = computed(() => props.item.children?.filter(child => !child.meta?.hidden) ?? [])
 
-/** 显示的子菜单数量 */
+/** 하위 메뉴 수 */
 const showingChildNumber = computed(() => showingChildren.value.length)
 
-/** 唯一的子菜单项 */
+/** 하위 메뉴 항목 만 */
 const theOnlyOneChild = computed(() => {
   const number = showingChildNumber.value
   switch (true) {

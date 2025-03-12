@@ -7,8 +7,8 @@ import { flatMultiLevelRoutes } from "./helper"
 const Layouts = () => import("@/layouts/index.vue")
 
 /**
- * @name 常驻路由
- * @description 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置唯一的 Name 属性
+ * @name 상주 라우트
+ * @description redirect/403/404/login 등의 숨겨진 페이지를 제외하고, 다른 페이지는 고유한 Name 속성을 설정하는 것이 좋습니다.
  */
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -56,7 +56,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/dashboard/index.vue"),
         name: "Dashboard",
         meta: {
-          title: "首页",
+          title: "홈",
           svgIcon: "dashboard",
           affix: true
         }
@@ -69,7 +69,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/demo/unocss",
     name: "Demo",
     meta: {
-      title: "示例集合",
+      title: "예제 모음",
       elIcon: "DataBoard"
     },
     children: [
@@ -105,7 +105,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         redirect: "/demo/level2/level3",
         name: "Level2",
         meta: {
-          title: "二级路由",
+          title: "2단계 라우트",
           alwaysShow: true
         },
         children: [
@@ -114,7 +114,7 @@ export const constantRoutes: RouteRecordRaw[] = [
             component: () => import("@/pages/demo/level2/level3/index.vue"),
             name: "Level3",
             meta: {
-              title: "三级路由",
+              title: "3단계 라우트",
               keepAlive: true
             }
           }
@@ -125,7 +125,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         redirect: "/demo/composable-demo/use-fetch-select",
         name: "ComposableDemo",
         meta: {
-          title: "组合式函数"
+          title: "조합 함수"
         },
         children: [
           {
@@ -159,24 +159,24 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/link",
     meta: {
-      title: "文档链接",
+      title: "문서 링크",
       elIcon: "Link"
     },
     children: [
       {
         path: "https://juejin.cn/post/7445151895121543209",
-        component: () => {},
+        component: () => { },
         name: "Link1",
         meta: {
-          title: "中文文档"
+          title: "중국어 문서"
         }
       },
       {
         path: "https://juejin.cn/column/7207659644487139387",
-        component: () => {},
+        component: () => { },
         name: "Link2",
         meta: {
-          title: "新手教程"
+          title: "초보자 튜토리얼"
         }
       }
     ]
@@ -184,9 +184,9 @@ export const constantRoutes: RouteRecordRaw[] = [
 ]
 
 /**
- * @name 动态路由
- * @description 用来放置有权限 (Roles 属性) 的路由
- * @description 必须带有唯一的 Name 属性
+ * @name 동적 라우트
+ * @description 권한 (Roles 속성)이 있는 라우트를 배치하는 곳
+ * @description 고유한 Name 속성을 반드시 가져야 합니다.
  */
 export const dynamicRoutes: RouteRecordRaw[] = [
   {
@@ -195,9 +195,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: "/permission/page-level",
     name: "Permission",
     meta: {
-      title: "权限演示",
+      title: "권한 데모",
       elIcon: "Lock",
-      // 可以在根路由中设置角色
+      // 루트 라우트에서 역할을 설정할 수 있습니다.
       roles: ["admin", "editor"],
       alwaysShow: true
     },
@@ -207,8 +207,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/permission/page-level.vue"),
         name: "PermissionPageLevel",
         meta: {
-          title: "页面级",
-          // 或者在子路由中设置角色
+          title: "페이지 수준",
+          // 또는 자식 라우트에서 역할을 설정할 수 있습니다.
           roles: ["admin"]
         }
       },
@@ -217,8 +217,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/permission/button-level.vue"),
         name: "PermissionButtonLevel",
         meta: {
-          title: "按钮级",
-          // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
+          title: "버튼 수준",
+          // 역할이 설정되지 않은 경우: 이 페이지는 권한이 필요하지 않지만 루트 라우트의 역할을 상속받습니다.
           roles: undefined
         }
       }
